@@ -9,6 +9,8 @@ height = 54.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_attack"]
 size = Vector2(48, 36)
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_placeholder"]
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
 collision_mask = 1
@@ -18,17 +20,9 @@ script = ExtResource("1_player")
 position = Vector2(0, -27)
 shape = SubResource("CapsuleShape2D_body")
 
-[node name="BodyPolygon" type="Polygon2D" parent="."]
-color = Color(0.2, 0.8, 1, 1)
-polygon = PackedVector2Array(-14, -4, -16, -16, -12, -36, -6, -50, 0, -54, 6, -50, 12, -36, 16, -16, 14, -4, 10, 0, -10, 0)
-
-[node name="CapePolygon" type="Polygon2D" parent="BodyPolygon"]
-color = Color(0.12, 0.15, 0.35, 1)
-polygon = PackedVector2Array(-14, -20, -24, -10, -22, 4, -10, -4)
-
-[node name="EyePolygon" type="Polygon2D" parent="BodyPolygon"]
-color = Color(1, 0.95, 0.3, 1)
-polygon = PackedVector2Array(4, -44, 10, -44, 8, -40, 4, -40)
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -42)
+sprite_frames = SubResource("SpriteFrames_placeholder")
 
 [node name="AttackArea" type="Area2D" parent="."]
 position = Vector2(38, -27)

@@ -36,11 +36,17 @@ jobs:
           preset: "Web"
           archive_output: false
 
-      - name: Verify Web Export Output
+      - name: Add .nojekyll & Verify Files
         run: |
-          echo "Checking build directory contents:"
-          ls -la build/
-          ls -la build/web/ || true
+          touch build/web/.nojekyll
+          echo "Checking build/web directory contents:"
+          ls -la build/web/
+
+      - name: Deploy to gh-pages branch
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build/web
 
       - name: Setup Pages
         uses: actions/configure-pages@v4

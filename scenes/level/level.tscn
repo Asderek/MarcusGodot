@@ -1,0 +1,233 @@
+[gd_scene load_steps=8 format=3 uid="uid://clevel001sotn"]
+
+[ext_resource type="Script" path="res://scripts/level.gd" id="1_level"]
+[ext_resource type="PackedScene" uid="uid://cplayer001sotn" path="res://scenes/player/player.tscn" id="2_player"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ground1"]
+size = Vector2(600, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ground2"]
+size = Vector2(500, 60)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_platform"]
+size = Vector2(140, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_finish"]
+size = Vector2(60, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pit"]
+size = Vector2(2500, 100)
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_level")
+
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -100
+
+[node name="ColorRect" type="ColorRect" parent="Background"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.07, 0.06, 0.11, 1)
+
+[node name="StartMarker" type="Marker2D" parent="."]
+position = Vector2(100, 450)
+
+[node name="StartPillar" type="Polygon2D" parent="StartMarker"]
+color = Color(0.2, 0.7, 0.4, 0.85)
+polygon = PackedVector2Array(-15, 0, 15, 0, 10, -80, -10, -80)
+
+[node name="StartLabel" type="Label" parent="StartMarker"]
+offset_left = -40.0
+offset_top = -105.0
+offset_right = 40.0
+offset_bottom = -80.0
+text = "PARTIDA"
+horizontal_alignment = 1
+
+[node name="Platforms" type="Node2D" parent="."]
+
+[node name="Ground1" type="StaticBody2D" parent="Platforms"]
+position = Vector2(300, 530)
+collision_layer = 1
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Ground1"]
+shape = SubResource("RectangleShape2D_ground1")
+
+[node name="Polygon2D" type="Polygon2D" parent="Platforms/Ground1"]
+color = Color(0.22, 0.2, 0.28, 1)
+polygon = PackedVector2Array(-300, -30, 300, -30, 300, 30, -300, 30)
+
+[node name="TopHighlight" type="Polygon2D" parent="Platforms/Ground1"]
+color = Color(0.4, 0.35, 0.5, 1)
+polygon = PackedVector2Array(-300, -30, 300, -30, 300, -24, -300, -24)
+
+[node name="Ground2" type="StaticBody2D" parent="Platforms"]
+position = Vector2(950, 530)
+collision_layer = 1
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/Ground2"]
+shape = SubResource("RectangleShape2D_ground2")
+
+[node name="Polygon2D" type="Polygon2D" parent="Platforms/Ground2"]
+color = Color(0.22, 0.2, 0.28, 1)
+polygon = PackedVector2Array(-250, -30, 250, -30, 250, 30, -250, 30)
+
+[node name="TopHighlight" type="Polygon2D" parent="Platforms/Ground2"]
+color = Color(0.4, 0.35, 0.5, 1)
+polygon = PackedVector2Array(-250, -30, 250, -30, 250, -24, -250, -24)
+
+[node name="PlatformA" type="StaticBody2D" parent="Platforms"]
+position = Vector2(420, 410)
+collision_layer = 1
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/PlatformA"]
+shape = SubResource("RectangleShape2D_platform")
+
+[node name="Polygon2D" type="Polygon2D" parent="Platforms/PlatformA"]
+color = Color(0.32, 0.28, 0.42, 1)
+polygon = PackedVector2Array(-70, -12, 70, -12, 70, 12, -70, 12)
+
+[node name="PlatformB" type="StaticBody2D" parent="Platforms"]
+position = Vector2(620, 310)
+collision_layer = 1
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/PlatformB"]
+shape = SubResource("RectangleShape2D_platform")
+
+[node name="Polygon2D" type="Polygon2D" parent="Platforms/PlatformB"]
+color = Color(0.32, 0.28, 0.42, 1)
+polygon = PackedVector2Array(-70, -12, 70, -12, 70, 12, -70, 12)
+
+[node name="PlatformC" type="StaticBody2D" parent="Platforms"]
+position = Vector2(850, 230)
+collision_layer = 1
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/PlatformC"]
+shape = SubResource("RectangleShape2D_platform")
+
+[node name="Polygon2D" type="Polygon2D" parent="Platforms/PlatformC"]
+color = Color(0.32, 0.28, 0.42, 1)
+polygon = PackedVector2Array(-70, -12, 70, -12, 70, 12, -70, 12)
+
+[node name="ElevatedGround" type="StaticBody2D" parent="Platforms"]
+position = Vector2(1400, 250)
+collision_layer = 1
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Platforms/ElevatedGround"]
+shape = SubResource("RectangleShape2D_ground1")
+
+[node name="Polygon2D" type="Polygon2D" parent="Platforms/ElevatedGround"]
+color = Color(0.22, 0.2, 0.28, 1)
+polygon = PackedVector2Array(-300, -30, 300, -30, 300, 30, -300, 30)
+
+[node name="TopHighlight" type="Polygon2D" parent="Platforms/ElevatedGround"]
+color = Color(0.4, 0.35, 0.5, 1)
+polygon = PackedVector2Array(-300, -30, 300, -30, 300, -24, -300, -24)
+
+[node name="FinishArea" type="Area2D" parent="."]
+position = Vector2(1580, 170)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FinishArea"]
+shape = SubResource("RectangleShape2D_finish")
+
+[node name="FinishArch" type="Polygon2D" parent="FinishArea"]
+color = Color(0.9, 0.75, 0.1, 0.85)
+polygon = PackedVector2Array(-25, 50, -25, -30, 0, -50, 25, -30, 25, 50, 18, 50, 18, -25, 0, -40, -18, -25, -18, 50)
+
+[node name="FinishLabel" type="Label" parent="FinishArea"]
+offset_left = -50.0
+offset_top = -75.0
+offset_right = 50.0
+offset_bottom = -50.0
+text = "CHEGADA"
+horizontal_alignment = 1
+
+[node name="PitHazard" type="Area2D" parent="."]
+position = Vector2(800, 750)
+collision_layer = 0
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PitHazard"]
+shape = SubResource("RectangleShape2D_pit")
+
+[node name="Player" parent="." instance=ExtResource("2_player")]
+position = Vector2(100, 450)
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="HeaderPanel" type="PanelContainer" parent="HUD"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 75.0
+grow_horizontal = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD/HeaderPanel"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/HeaderPanel/MarginContainer"]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="HUD/HeaderPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "CASTLEVANIA: SOTN PLATFORMER PROTOTYPE"
+horizontal_alignment = 1
+
+[node name="ControlsLabel" type="Label" parent="HUD/HeaderPanel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Teclado: [A/D] Mover | [Espaço] Pular | [L] Backdash | [J / X] Ataque  ||  Controle: [D-Pad/Analog] Mover | [X] Pular | [Triângulo] Backdash | [Quadrado] Ataque"
+horizontal_alignment = 1
+
+[node name="StateLabel" type="Label" parent="HUD"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_top = -40.0
+offset_right = 400.0
+offset_bottom = -15.0
+grow_vertical = 0
+text = "Status: Ground"
+
+[node name="WinPanel" type="PanelContainer" parent="HUD"]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -220.0
+offset_top = -90.0
+offset_right = 220.0
+offset_bottom = 90.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/WinPanel"]
+layout_mode = 2
+alignment = 1
+
+[node name="WinTitle" type="Label" parent="HUD/WinPanel/VBoxContainer"]
+layout_mode = 2
+text = "🏆 DEMONSTRAÇÃO CONCLUÍDA! 🏆"
+horizontal_alignment = 1
+
+[node name="WinSubtitle" type="Label" parent="HUD/WinPanel/VBoxContainer"]
+layout_mode = 2
+text = "Você chegou da PARTIDA até a CHEGADA com sucesso!"
+horizontal_alignment = 1
+
+[node name="RestartHint" type="Label" parent="HUD/WinPanel/VBoxContainer"]
+layout_mode = 2
+text = "Pressione R para reiniciar a demonstração."
+horizontal_alignment = 1

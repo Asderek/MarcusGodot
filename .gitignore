@@ -1,0 +1,8 @@
+# Godot 4.x ignored files
+.godot/
+*.translation
+*.import
+
+# Build output
+build/
+export_presets.cfg.bak

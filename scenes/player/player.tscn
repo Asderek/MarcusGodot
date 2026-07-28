@@ -1,0 +1,53 @@
+[gd_scene load_steps=5 format=3 uid="uid://cplayer001sotn"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_player"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_body"]
+radius = 16.0
+height = 54.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_attack"]
+size = Vector2(48, 36)
+
+[node name="Player" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 1
+script = ExtResource("1_player")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -27)
+shape = SubResource("CapsuleShape2D_body")
+
+[node name="BodyPolygon" type="Polygon2D" parent="."]
+color = Color(0.2, 0.8, 1, 1)
+polygon = PackedVector2Array(-14, -4, -16, -16, -12, -36, -6, -50, 0, -54, 6, -50, 12, -36, 16, -16, 14, -4, 10, 0, -10, 0)
+
+[node name="CapePolygon" type="Polygon2D" parent="BodyPolygon"]
+color = Color(0.12, 0.15, 0.35, 1)
+polygon = PackedVector2Array(-14, -20, -24, -10, -22, 4, -10, -4)
+
+[node name="EyePolygon" type="Polygon2D" parent="BodyPolygon"]
+color = Color(1, 0.95, 0.3, 1)
+polygon = PackedVector2Array(4, -44, 10, -44, 8, -40, 4, -40)
+
+[node name="AttackArea" type="Area2D" parent="."]
+position = Vector2(38, -27)
+collision_layer = 4
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+shape = SubResource("RectangleShape2D_attack")
+
+[node name="AttackPolygon" type="Polygon2D" parent="AttackArea"]
+visible = false
+color = Color(1, 0.85, 0.2, 0.85)
+polygon = PackedVector2Array(-24, -18, 10, -22, 24, -10, 24, 10, 10, 18, -24, 14, -10, 0)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -36)
+zoom = Vector2(1.2, 1.2)
+position_smoothing_enabled = true
+position_smoothing_speed = 8.0
+
+[node name="TrailContainer" type="Node2D" parent="."]

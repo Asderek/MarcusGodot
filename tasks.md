@@ -27,4 +27,4 @@
 ## Phase 5: GitHub Pages Deployment
 - [x] Initialize Git repository in workspace (`git init`).
 - [x] Create GitHub Actions deployment workflow (`.github/workflows/deploy.yml`).
-- [ ] Connect remote repository & push to GitHub Pages.
+- [x] Connect remote repository (`https://github.com/Asderek/MarcusGodot.git`) & push to GitHub Pages.
